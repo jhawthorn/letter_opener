@@ -81,15 +81,17 @@
     </dd>
   </dl>
 
-  <% if mail.multipart? %>
-    <p class="alternate">
+  <p class="alternate">
+    <% if mail.multipart? %>
       <% if type == "plain" && mail.html_part %>
         <a href="rich.html">View HTML version</a>
       <% elsif type == "rich" && mail.text_part %>
         <a href="plain.html">View plain text version</a>
       <% end %>
-    </p>
-  <% end %>
+      <br/>
+    <% end %>
+    <a href="raw.txt">View encoded message</a>
+  </p>
 </div>
 
 <% if type == "plain" %>

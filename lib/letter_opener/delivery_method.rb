@@ -11,6 +11,9 @@ module LetterOpener
       messages << Message.new(location, mail, mail.text_part) if mail.text_part
       messages << Message.new(location, mail) if messages.empty?
       messages.each { |message| message.render }
+      File.open(File.join(location, "raw.txt"), 'w') do |f|
+        f.write(mail.to_s)
+      end
       Launchy.open(URI.parse("file://#{messages.first.filepath}"))
     end
   end
